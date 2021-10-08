@@ -8,6 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		4D1D0A1327026A490062D10E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1D0A1227026A490062D10E /* main.swift */; };
+		4D1D0A1A27026B860062D10E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1D0A1927026B860062D10E /* MainViewController.swift */; };
+		4D1FD8022710712200F1D13E /* GenericView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1FD8012710712200F1D13E /* GenericView.swift */; };
+		4D1FD8052710879900F1D13E /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1FD8042710879900F1D13E /* Routes.swift */; };
+		4D5408B8270CBCDF006EBC8D /* DatabaseAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5408B7270CBCDF006EBC8D /* DatabaseAccount.swift */; };
+		4D5408BA270CD289006EBC8D /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5408B9270CD289006EBC8D /* AccountViewController.swift */; };
+		4D60B8472703827000E0A105 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D60B8462703827000E0A105 /* Account.swift */; };
+		4D60B849270392B900E0A105 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D60B848270392B900E0A105 /* User.swift */; };
+		4D7AC9DB2704EA9A00F468BA /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7AC9DA2704EA9A00F468BA /* RegisterController.swift */; };
+		4D9EB9B6270DAFE500C80686 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9EB9B5270DAFE500C80686 /* Validation.swift */; };
+		4D9EB9B8270E0C9F00C80686 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9EB9B7270E0C9F00C80686 /* AccountView.swift */; };
+		4D9EB9BA270E173C00C80686 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9EB9B9270E173C00C80686 /* AccountService.swift */; };
+		4DFFC5FC270B92BA00EDA874 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFFC5FB270B92BA00EDA874 /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +37,18 @@
 /* Begin PBXFileReference section */
 		4D1D0A0F27026A490062D10E /* Iti Project */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Iti Project"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D1D0A1227026A490062D10E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		4D1D0A1927026B860062D10E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		4D1FD8012710712200F1D13E /* GenericView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericView.swift; sourceTree = "<group>"; };
+		4D1FD8042710879900F1D13E /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
+		4D5408B7270CBCDF006EBC8D /* DatabaseAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseAccount.swift; sourceTree = "<group>"; };
+		4D5408B9270CD289006EBC8D /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		4D60B8462703827000E0A105 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		4D60B848270392B900E0A105 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		4D7AC9DA2704EA9A00F468BA /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
+		4D9EB9B5270DAFE500C80686 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
+		4D9EB9B7270E0C9F00C80686 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		4D9EB9B9270E173C00C80686 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
+		4DFFC5FB270B92BA00EDA874 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +81,85 @@
 		4D1D0A1127026A490062D10E /* Iti Project */ = {
 			isa = PBXGroup;
 			children = (
+				4D1FD8062710CB3C00F1D13E /* Generic */,
+				4D1FD8032710877B00F1D13E /* Routes */,
+				4D9EB9B4270DAFCF00C80686 /* Validation */,
+				4D9EB9B3270DA9C800C80686 /* User */,
+				4D5408B6270CBCC2006EBC8D /* Database */,
+				4D5408B5270CAB20006EBC8D /* Account */,
+				4DFFC5FD270BA72900EDA874 /* Register */,
 				4D1D0A1227026A490062D10E /* main.swift */,
+				4DFFC5FA270B91A400EDA874 /* MainView */,
 			);
 			path = "Iti Project";
+			sourceTree = "<group>";
+		};
+		4D1FD8032710877B00F1D13E /* Routes */ = {
+			isa = PBXGroup;
+			children = (
+				4D1FD8042710879900F1D13E /* Routes.swift */,
+			);
+			path = Routes;
+			sourceTree = "<group>";
+		};
+		4D1FD8062710CB3C00F1D13E /* Generic */ = {
+			isa = PBXGroup;
+			children = (
+				4D1FD8012710712200F1D13E /* GenericView.swift */,
+			);
+			path = Generic;
+			sourceTree = "<group>";
+		};
+		4D5408B5270CAB20006EBC8D /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				4D5408B9270CD289006EBC8D /* AccountViewController.swift */,
+				4D60B8462703827000E0A105 /* Account.swift */,
+				4D9EB9B7270E0C9F00C80686 /* AccountView.swift */,
+				4D9EB9B9270E173C00C80686 /* AccountService.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		4D5408B6270CBCC2006EBC8D /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				4D5408B7270CBCDF006EBC8D /* DatabaseAccount.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		4D9EB9B3270DA9C800C80686 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				4D60B848270392B900E0A105 /* User.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		4D9EB9B4270DAFCF00C80686 /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				4D9EB9B5270DAFE500C80686 /* Validation.swift */,
+			);
+			path = Validation;
+			sourceTree = "<group>";
+		};
+		4DFFC5FA270B91A400EDA874 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				4D1D0A1927026B860062D10E /* MainViewController.swift */,
+				4DFFC5FB270B92BA00EDA874 /* MainView.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		4DFFC5FD270BA72900EDA874 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				4D7AC9DA2704EA9A00F468BA /* RegisterController.swift */,
+			);
+			path = Register;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -120,6 +220,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D1D0A1327026A490062D10E /* main.swift in Sources */,
+				4D5408B8270CBCDF006EBC8D /* DatabaseAccount.swift in Sources */,
+				4D7AC9DB2704EA9A00F468BA /* RegisterController.swift in Sources */,
+				4D60B849270392B900E0A105 /* User.swift in Sources */,
+				4D9EB9B8270E0C9F00C80686 /* AccountView.swift in Sources */,
+				4D9EB9B6270DAFE500C80686 /* Validation.swift in Sources */,
+				4D60B8472703827000E0A105 /* Account.swift in Sources */,
+				4D1D0A1A27026B860062D10E /* MainViewController.swift in Sources */,
+				4D1FD8052710879900F1D13E /* Routes.swift in Sources */,
+				4D5408BA270CD289006EBC8D /* AccountViewController.swift in Sources */,
+				4D1FD8022710712200F1D13E /* GenericView.swift in Sources */,
+				4D9EB9BA270E173C00C80686 /* AccountService.swift in Sources */,
+				4DFFC5FC270B92BA00EDA874 /* MainView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

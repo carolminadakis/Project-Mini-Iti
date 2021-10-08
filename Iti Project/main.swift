@@ -7,5 +7,19 @@
 
 import Foundation
 
-print("Hello, World!")
+//var database = Database.shared
+//database.initData()
+
+
+
+//clientController.initMenu()
+ MainViewController().initMainView()
+
+
+
+
+
+
+
+
 
