@@ -10,7 +10,7 @@ import Foundation
 struct AccountViewController {
     
     
-    func startingAccountView(logeduser: User){
+    func startingAccountView(to logedUser: User){
         
         var repeatingAccountView = true
         
@@ -21,15 +21,15 @@ struct AccountViewController {
             
             switch option {
             case .balance:
-                routeToAccountService().newBalance(usertest: logeduser)        //saldo
+                routeToAccountService().newBalance(to: logedUser)        //saldo
             
             case .deposit:
-                routeToAccountService().newDeposit(userTest: logeduser)        //depósito
+                routeToAccountService().newDeposit(to: logedUser)        //depósito
             
-            case .payment: break
+            case .delete: break
                 
             case .transference:
-                routeToAccountService().newTransference(userTransference: logeduser)    //tranferencia
+                routeToAccountService().newTransference(from: logedUser)    //tranferencia
             
             case .pix: break
                 

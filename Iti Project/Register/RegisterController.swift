@@ -64,17 +64,5 @@ struct RegisterController {
             print("Não foi possível realizar seu cadastro.")
         }
     }
-    
-    
-//    func getIntoAccount(valid logedUser: User) {
-//        for user in UserDatabase.shared.users.indices {
-//            if (UserDatabase.shared.users[user].idDocument == logedUser.idDocument && UserDatabase.shared.users[user].password == logedUser.password) {
-//                routeToAccountViewController().startingAccountView()
-//            }
-//        }
-//        if user.idDocument == UserDatabase.shared.users{
-//            routeToAccountViewController().startingAccountView()
-//        }
-//    }
 }
 

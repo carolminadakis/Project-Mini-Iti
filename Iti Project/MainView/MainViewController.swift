@@ -22,11 +22,11 @@ struct MainViewController {
             case .register:
                 let user = routeToRegisterController().formToRegisterNewUser()  //preenche formulário de registro
                 routeToRegisterController().validation(of: user)                //valida informações
-                routeToAccountService().getIntoAccount(valid: user)             //valida acesso e entra no menu da conta
+                routeToAccountService().getIntoAccount(validate: user)             //valida acesso e entra no menu da conta
                 repeatMainView = false
             case .login:
                 let logedUser = routeToAccountView().getUser()                  //chama a view de acesso e recebe informações do usuário
-                routeToAccountService().getIntoAccount(valid: logedUser )       //valida acesso e entra no menu da conta
+                routeToAccountService().getIntoAccount(validate: logedUser )       //valida acesso e entra no menu da conta
                 repeatMainView = false
             case .logout:
                 routeToGenericView().logout()                                   //finaliza app

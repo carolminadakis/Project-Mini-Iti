@@ -9,30 +9,30 @@ import Foundation
 
 class AccountService{
     
-    func newDeposit(userTest: User) {
+    func newDeposit(to logedUser: User) {
         
         routeToGenericView().getValue()
         guard let inputValue = readLine() else { return }
         guard let value = Double(inputValue) else { return  }
         
         for user in UserDatabase.shared.users.indices {
-            if (UserDatabase.shared.users[user].password == userTest.password) {
-                UserDatabase.shared.saveDeposit(of: value, userDB: userTest)
+            if (UserDatabase.shared.users[user].password == logedUser.password) {
+                UserDatabase.shared.saveDeposit(of: value, userDB: logedUser)
             }
         }
         print("Depósito realizado com sucesso.")
     }
     
-    func newBalance(usertest: User){
+    func newBalance(to LogedUser: User){
         
         for user in UserDatabase.shared.users.indices {
-            if (UserDatabase.shared.users[user].password == usertest.password) {
-                UserDatabase.shared.getBalance(loged: usertest)
+            if (UserDatabase.shared.users[user].password == LogedUser.password) {
+                UserDatabase.shared.getBalance(loged: LogedUser)
             }
         }
     }
     
-    func newTransference(userTransference: User) {
+    func newTransference(from logedUser: User) {
         var value: Double?
         /*
          1- Receber agencia e conta de destino
@@ -63,7 +63,7 @@ class AccountService{
             guard let inputValue = readLine() else { return }
             value = Double(inputValue)
             
-            UserDatabase.shared.withdraw(of: value, userDB: userTransference)
+            UserDatabase.shared.withdraw(of: value, userDB: logedUser)
         }
         if(UserDatabase.shared.transference(to: agency, to: account, of: value) == true) {
             print("Transferência realizada com sucesso.")
@@ -73,12 +73,12 @@ class AccountService{
     }
     
     //Valido o user e passo ele validado como argumento para o acesso do menu do cliente 
-    func getIntoAccount(valid logedUser: User) {
+    func getIntoAccount(validate userInfo: User) {
         for user in UserDatabase.shared.users.indices {
-            if (UserDatabase.shared.users[user].idDocument == logedUser.idDocument && UserDatabase.shared.users[user].password == logedUser.password) {
+            if (UserDatabase.shared.users[user].idDocument == userInfo.idDocument && UserDatabase.shared.users[user].password == userInfo.password) {
                 
-                let user = User(idDocument: logedUser.idDocument, password: logedUser.password)
-                routeToAccountViewController().startingAccountView(logeduser: user)
+                let user = User(idDocument: userInfo.idDocument, password: userInfo.password)
+                routeToAccountViewController().startingAccountView(to: user)
             }
         }
     }

@@ -19,8 +19,8 @@ struct AccountView {
     *       Digite a opção que deseja:     *
     *                                      *
     *       [1] - Saldo                    *
-    *       [2] - Deposito                 *
-    *       [3] - Pagar                    *
+    *       [2] - Depositar                *
+    *       [3] - Excluir Conta            *
     *       [4] - Transferência            *
     *       [5] - Pix                      *
     *       [6] - Sair                     *
@@ -55,7 +55,7 @@ struct AccountView {
 enum AccountOptions: String {
     case balance = "1"
     case deposit = "2"
-    case payment = "3"
+    case delete = "3"
     case transference = "4"
     case pix = "5"
     case logout = "6"
