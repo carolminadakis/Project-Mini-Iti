@@ -52,26 +52,29 @@ struct RegisterController {
         return newUser
     }
     
-    func validation(of newUser: User) -> Bool{
+    func validation(of newUser: User){
         if (newUser.fullName.isNameValid() && newUser.idDocument.isCPFValid()){
-            let isSuccess = Database.shared.save(user: newUser)
-            if isSuccess {
+            let isSuccess = UserDatabase.shared.save(user: newUser)
+            if isSuccess == true {
                 print("Usuário cadastrado")
                 print("Agencia: ", newUser.account.bankAgency)
                 print("Conta corrente: ", newUser.account.accNumber)
             }
         } else {
             print("Não foi possível realizar seu cadastro.")
-            return false
         }
-        return true
     }
     
     
-    func getIntoAccount(is valid: Bool) {
-        if valid == true {
-            routeToAccountViewController().startingAccountView()
-        }
-    }
+//    func getIntoAccount(valid logedUser: User) {
+//        for user in UserDatabase.shared.users.indices {
+//            if (UserDatabase.shared.users[user].idDocument == logedUser.idDocument && UserDatabase.shared.users[user].password == logedUser.password) {
+//                routeToAccountViewController().startingAccountView()
+//            }
+//        }
+//        if user.idDocument == UserDatabase.shared.users{
+//            routeToAccountViewController().startingAccountView()
+//        }
+//    }
 }
 

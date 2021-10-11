@@ -9,13 +9,13 @@ import Foundation
 
 class User {
     
-    var fullName: String
-    var idDocument: String
-    var phoneNumber: String
-    var address: String
-    var occupation: String
-    var income: Double
-    var password: String
+    var fullName: String = ""
+    var idDocument: String = ""
+    var phoneNumber: String = ""
+    var address: String = ""
+    var occupation: String = ""
+    var income: Double = 0.0
+    var password: String = ""
    private(set) var account = Account()
 
     init(fullName: String, idDocument: String, phoneNumber: String, address: String, occupation: String, income: Double, password: String, account: Account) {
@@ -28,5 +28,9 @@ class User {
         self.password = password
         self.account = Account()
     }
-
+    
+    init(idDocument: String, password: String) {
+        self.idDocument = idDocument
+        self.password = password
+    }
 }

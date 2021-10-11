@@ -9,15 +9,6 @@ import Foundation
 
 struct AccountView {
     
-    /*
-     1- Criar func para cliente logar
-     2- Criar a view da área do cliente logado
-     3- Criar enum para opções
-     */
-//    
-//    func login() {
-//        <#function body#>
-//    }
     
     func menuView() {
         print("""
@@ -39,7 +30,26 @@ struct AccountView {
     """)
     }
     
- 
+    func getUser() -> User{
+        var password = ""
+        var document = ""
+        
+        routeToGenericView().getDocument()
+        if let cpf = readLine() {
+            document = cpf
+        }
+        
+        routeToGenericView().getPassword()
+        if let pass = readLine() {
+            password = pass
+        }
+        
+        _ = UserDatabase.shared.findByDocument(number: document)
+        _ = UserDatabase.shared.validPassword(passwordInput: password)
+        
+        return User(idDocument: document, password: password)
+    }
+    
 }
 
 enum AccountOptions: String {

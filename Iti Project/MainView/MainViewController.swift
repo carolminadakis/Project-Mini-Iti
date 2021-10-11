@@ -20,17 +20,18 @@ struct MainViewController {
             
             switch option {
             case .register:
-                let user = routeToRegisterController().formToRegisterNewUser()
-                let isValid = routeToRegisterController().validation(of: user)
-                routeToRegisterController().getIntoAccount(is: isValid)
+                let user = routeToRegisterController().formToRegisterNewUser()  //preenche formulário de registro
+                routeToRegisterController().validation(of: user)                //valida informações
+                routeToAccountService().getIntoAccount(valid: user)             //valida acesso e entra no menu da conta
                 repeatMainView = false
             case .login:
-                let isValid = routeToAccountService().validateToLogin()
-                routeToRegisterController().getIntoAccount(is: isValid)
+                let logedUser = routeToAccountView().getUser()                  //chama a view de acesso e recebe informações do usuário
+                routeToAccountService().getIntoAccount(valid: logedUser )       //valida acesso e entra no menu da conta
                 repeatMainView = false
             case .logout:
+                routeToGenericView().logout()                                   //finaliza app
                 repeatMainView = false
-                routeToGenericView().logout()
+                break
             case .notFound:
                 routeToGenericView().invalidOption()
             }

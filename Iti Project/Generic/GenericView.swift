@@ -59,4 +59,11 @@ func header() {
     func invalidOption() {
         print("Opção inválida.")
     }
+    
+    func getAgency()  {
+        print("Agencia: ")
+    }
+    func getAccount()  {
+        print("Conta: ")
+    }
 }

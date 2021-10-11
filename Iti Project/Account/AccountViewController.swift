@@ -10,7 +10,7 @@ import Foundation
 struct AccountViewController {
     
     
-    func startingAccountView() {
+    func startingAccountView(logeduser: User){
         
         var repeatingAccountView = true
         
@@ -21,20 +21,21 @@ struct AccountViewController {
             
             switch option {
             case .balance:
-                routeToAccountService().newBalance()
-                
+                routeToAccountService().newBalance(usertest: logeduser)        //saldo
+            
             case .deposit:
-                routeToAccountService().newDeposit()
-                
+                routeToAccountService().newDeposit(userTest: logeduser)        //depósito
+            
             case .payment: break
                 
-            case .transference: break
-                
+            case .transference:
+                routeToAccountService().newTransference(userTransference: logeduser)    //tranferencia
+            
             case .pix: break
                 
             case .logout:
+                routeToGenericView().logout()       //finaliza menu da conta e volta para menu inicial
                 repeatingAccountView = false
-                routeToGenericView().logout()
                 routeToMainViewController().initMainView()
             case .notfound:
                 routeToGenericView().invalidOption()

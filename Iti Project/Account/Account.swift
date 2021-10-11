@@ -12,7 +12,7 @@ class Account {
     private(set) var bankAgency: Int
     private(set) var accNumber: Int
     private var balance: Double = 0.0
-
+    
     
     init() {
         self.bankAgency = Int.random(in: 100...999)
@@ -22,20 +22,18 @@ class Account {
     
     func deposit(of value: Double){
         if value > 0.0 {
-        balance += value
+            balance += value
         }
     }
     
     func currentBalance() -> Double {
-       return balance
+        return balance
     }
     
-    func transference(of value: Double) {
+    
+    func withdraw(the value: Double) {
         if value <= balance {
             balance -= value
-        } else {
-            print("Saldo insuficiente!")
         }
     }
-
 }
