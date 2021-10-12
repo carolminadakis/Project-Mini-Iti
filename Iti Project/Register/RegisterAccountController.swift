@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RegisterController {
+struct RegisterAccountController {
     
     func formToRegisterNewUser() -> User{
         var name: String = ""
@@ -28,7 +28,7 @@ struct RegisterController {
         if let inputDocument = readLine(){
             document = inputDocument
         }
-        routeToGenericView().getPhoneNumber()
+        routeToGenericView().getCellPhoneNumber()
         if let inputPhone = readLine(){
             phoneNumber = inputPhone
         }

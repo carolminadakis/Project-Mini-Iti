@@ -8,21 +8,19 @@
 import Foundation
 
 class Pix{
+    var type: PixKey
+    var key = ""
     
-    var typeKey: PixKey
-    var user: User
-    var key: String
-    
-    init(typeKey: PixKey, user: User, key: String) {
-        self.typeKey = typeKey
-        self.user = user
+    init(type: PixKey, key: String) {
+        self.type = type
         self.key = key
     }
-    
 }
 
 enum PixKey: String {
     case email = "1"
     case phone = "2"
     case document = "3"
+    case returnMenu = "5"
+    case notfound = "0"
 }

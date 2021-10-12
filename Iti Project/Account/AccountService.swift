@@ -34,15 +34,7 @@ class AccountService{
     
     func newTransference(from logedUser: User) {
         var value: Double?
-        /*
-         1- Receber agencia e conta de destino
-         2- validar agencia e conta de destino
-         3- receber valor para transferência
-         4- validar senha para tranferência
-         5- retirar dinheiro da conta do cliente
-         6- transferir para a conta de destino
-         */
-        
+
         //1- Agencia
         routeToGenericView().getAgency()
         guard let inputAgency = readLine() else { return }
@@ -62,16 +54,16 @@ class AccountService{
             routeToGenericView().getValue()
             guard let inputValue = readLine() else { return }
             value = Double(inputValue)
-            
-            UserDatabase.shared.withdraw(of: value, userDB: logedUser)
-        }
-        if(UserDatabase.shared.transference(to: agency, to: account, of: value) == true) {
+
+        } //Tranfere valor
+        let result = UserDatabase.shared.transference(to: agency, to: account, of: value, userDB: logedUser)
+        if(result == true) {
             print("Transferência realizada com sucesso.")
         } else {
             print("Não foi possível completar a operação.")
         }
     }
-    
+
     //Valido o user e passo ele validado como argumento para o acesso do menu do cliente 
     func getIntoAccount(validate userInfo: User) {
         for user in UserDatabase.shared.users.indices {
@@ -81,11 +73,6 @@ class AccountService{
                 routeToAccountViewController().startingAccountView(to: user)
             }
         }
-    }
-    
-    func routeToAccount() -> Account {
-        let transaction = Account()
-        return transaction
     }
 }
 

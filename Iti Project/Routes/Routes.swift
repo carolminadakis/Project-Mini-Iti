@@ -17,14 +17,19 @@ func routeToAccountView() -> AccountView{
     return view
 }
 
-func routeToRegisterController() -> RegisterController {
-    let access = RegisterController()
+func routeToRegisterController() -> RegisterAccountController {
+    let access = RegisterAccountController()
     return access
 }
 
 func routeToAccountViewController() -> AccountViewController{
     let accountController = AccountViewController()
     return accountController
+}
+
+func routeToPixController() -> PixController{
+    let pixController = PixController()
+    return pixController
 }
 
 
@@ -43,3 +48,12 @@ func routeToMainViewController() -> MainViewController {
     return viewController
 }
 
+func routeToAccount() -> Account {
+    let transaction = Account()
+    return transaction
+}
+
+func routeToPixView() -> PixView {
+    let pixView = PixView()
+    return pixView
+}

@@ -11,23 +11,20 @@ populaBanco()
 
  MainViewController().initMainView()
 
-
-
-
 func populaBanco() {
-    let user1 = User(fullName: "Ana Carolina", idDocument: "50170094006", phoneNumber: "32293400", address: "Rio Preto", occupation: "Dev", income: 3500.0, password: "123", account: Account())
+    let user1 = User(fullName: "Maria da Silva", idDocument: "67916421062", phoneNumber: "32293400", address: "São Paulo", occupation: "Enfermeira", income: 3500.0, password: "123", account: Account())
 
 
-    let user2 = User(fullName: "Leandro Oliveira", idDocument: "71434393046", phoneNumber: "98745632", address: "Rio Preto", occupation: "Dev", income: 4500, password: "321", account: Account())
+    let user2 = User(fullName: "João de Oliveira", idDocument: "20205978029", phoneNumber: "98745632", address: "Curitiba", occupation: "Mecânico", income: 4500, password: "321", account: Account())
 
 
     _ = UserDatabase.shared.save(user: user1)
     _ = UserDatabase.shared.save(user: user2)
     
-    print("Carol agencia: ", user1.account.bankAgency)
-    print("Carol conta: ", user1.account.accNumber)
+    print("Maria agencia: ", user1.account.bankAgency)
+    print("Maria conta: ", user1.account.accNumber)
 
-    print("Leandro agencia: ", user2.account.bankAgency)
-    print("Leandro conta: ", user2.account.accNumber)
+    print("João agencia: ", user2.account.bankAgency)
+    print("João conta: ", user2.account.accNumber)
 
 }

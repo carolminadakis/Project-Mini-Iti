@@ -59,6 +59,7 @@ class UserDatabase {
         return false
     }
     
+    
     func validAgency(agency: Int?) -> Bool {
         guard let agencyUnwrapped = agency else { return false }
         for user in UserDatabase.shared.users.indices {
@@ -98,16 +99,49 @@ class UserDatabase {
         }
     }
     
-    func transference(to agencyInput: Int?, to accountInput: Int?, of inputValue: Double?) -> Bool{
+    func existsPixKey(inputKey : String ) -> Bool {
+        return UserDatabase.shared.users.flatMap({ $0.account.pixKeys }).contains(where: { $0.key == inputKey})
+    }
+    
+    func validadePixKey(keyType: PixKey, key: String) -> Bool {
+        var result = true
         
+        if (keyType == .email) {
+            result = key.isEmailValid()
+        }
+        if (keyType == .document) {
+            result = key.isCPFValid()
+        }
+        if keyType == .phone {
+            result = key.isPhoneValid()
+        }
+        return result
+    }
+    
+    func payWithPix(keyType: PixKey, key: String, of value: Double?, loged: User) -> Bool{
+        guard let value = value else { return false}
         
-        guard let agency = agencyInput else { return false}
-        guard let account = accountInput else { return false}
-        guard let value = inputValue else { return false}
+        let result = existsPixKey(inputKey: key) //checa se existe o pix informado
         
+        let total = loged.account.currentBalance() //checa o saldo da conta do cliente logado
+        
+        for userDB in UserDatabase.shared.users.indices {
+            if (total >= value) {
+                UserDatabase.shared.users[userDB].account.withdraw(the: value)
+            }
+        }
+        
+        if result == true {
+            let userReceiver = UserDatabase.shared.users.first(where: {$0.account.pixKeys.contains(where: {$0.key == key})})
+            userReceiver?.account.deposit(of: value)
+        }
+        return true
+    }
+    
+    func addPixKey(pixKey: Pix, loged: User) -> Bool {
         for user in UserDatabase.shared.users.indices {
-            if (agency == UserDatabase.shared.users[user].account.bankAgency && account == UserDatabase.shared.users[user].account.accNumber) {
-                UserDatabase.shared.users[user].account.deposit(of: value)
+            if (UserDatabase.shared.users[user].idDocument == loged.idDocument) {
+                UserDatabase.shared.users[user].account.pixKeys.append(pixKey)
                 return true
             }
             
@@ -115,7 +149,29 @@ class UserDatabase {
         return false
     }
     
-    func withdraw(of valueInput: Double?, userDB: User) {
+    
+    func transference(to agencyInput: Int?, to accountInput: Int?, of inputValue: Double?, userDB: User) -> Bool{
+        guard let agency = agencyInput else { return false}
+        guard let account = accountInput else { return false}
+        guard let value = inputValue else { return false}
+        
+        for userSender in UserDatabase.shared.users.indices {
+            if (userDB.password == UserDatabase.shared.users[userSender].password) {
+                UserDatabase.shared.users[userSender].account.withdraw(the: value)
+            }
+        }
+        
+        for userPaid in UserDatabase.shared.users.indices {
+            if (agency == UserDatabase.shared.users[userPaid].account.bankAgency && account == UserDatabase.shared.users[userPaid].account.accNumber) {
+                UserDatabase.shared.users[userPaid].account.deposit(of: value)
+                return true
+            }
+            
+        }
+        return false
+    }
+    
+    func withdrawTest(of valueInput: Double?, userDB: User) {
         guard let value = valueInput else { return }
         for user in UserDatabase.shared.users.indices {
             if (userDB.password == UserDatabase.shared.users[user].password) {
@@ -123,7 +179,6 @@ class UserDatabase {
             }
         }
     }
-    
     
     func validPassword(passwordInput: String?) -> String {
         guard let passwordUnwrapped = passwordInput else { return "" }

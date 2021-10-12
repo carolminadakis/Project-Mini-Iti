@@ -29,8 +29,12 @@ func header() {
         print("CPF: ")
     }
     
-    func getPhoneNumber() {
-        print("Telefone: ")
+    func getCellPhoneNumber() {
+        print("Celular: ")
+    }
+    
+    func getPixKey() {
+        print("Digite a chave pix: ")
     }
     
     func getAddress() {

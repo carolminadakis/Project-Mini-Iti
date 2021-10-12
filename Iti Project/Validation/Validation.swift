@@ -12,8 +12,8 @@ extension String {
     //Validação para nomes, obriga a ter nome e sobrenome, aceita caracteres especiais e acentos e não aceita números
     func isNameValid() -> Bool {
         
-        let mobileRegEx = "^([A-Za-zÀ-ú]{2,}\\s[A-Za-zÀ-ú.'-]{1,}'?-?[A-Za-zÀ-ú.'-]{2,}\\s?([A-Za-zÀ-ú.'-]{1,})?)"
-        return NSPredicate(format: "SELF MATCHES %@", mobileRegEx).evaluate(with: self)
+        let nameRegEx = "^([A-Za-zÀ-ú]{2,}\\s[A-Za-zÀ-ú.'-]{1,}'?-?[A-Za-zÀ-ú.'-]{2,}\\s?([A-Za-zÀ-ú.'-]{1,})?)"
+        return NSPredicate(format: "SELF MATCHES %@", nameRegEx).evaluate(with: self)
     }
     
     func isCPFValid() -> Bool {
@@ -49,21 +49,18 @@ extension String {
         
         return temp1 == d1 && temp2 == d2
     }
+    
+    func isEmailValid() -> Bool {
+        
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        return NSPredicate(format: "SELF MATCHES %@", emailRegEx).evaluate(with: self)
+    }
+    
+    func isPhoneValid() -> Bool {
+        
+        let phoneRegEx = "^\\d{5}-\\d{4}$"
+        return NSPredicate(format: "SELF MATCHES %@", phoneRegEx).evaluate(with: self)
+    }
 }
-
-
-/*
- Outra forma de fazer a validação do nome seria com struct
- //struct Validation {
- let mobileRegEx = "^([A-Za-zÀ-ú]{2,}\\s[A-Za-zÀ-ú.'-]{1,}'?-?[A-Za-zÀ-ú.'-]{2,}\\s?([A-Za-zÀ-ú.'-]{1,})?)"
- 
- do {
- let regex = try NSRegularExpression(pattern: mobileRegEx)
- if regex.matches(in: str, options: [], range: NSMakeRange(0, str.count)).count > 0 { return true }
- }
- catch {}
- return false
- }
- */
 
 

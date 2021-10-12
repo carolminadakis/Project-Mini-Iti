@@ -12,6 +12,8 @@ class Account {
     private(set) var bankAgency: Int
     private(set) var accNumber: Int
     private var balance: Double = 0.0
+    var pixKeys: [Pix] = []
+    
     
     
     init() {
@@ -34,6 +36,8 @@ class Account {
     func withdraw(the value: Double) {
         if value <= balance {
             balance -= value
+        } else {
+            print("Saldo insuficiente.")
         }
     }
 }

@@ -18,6 +18,7 @@ class User {
     var password: String = ""
    private(set) var account = Account()
 
+    
     init(fullName: String, idDocument: String, phoneNumber: String, address: String, occupation: String, income: Double, password: String, account: Account) {
         self.fullName = fullName
         self.idDocument = idDocument
@@ -33,4 +34,6 @@ class User {
         self.idDocument = idDocument
         self.password = password
     }
+    
+    init() {}
 }

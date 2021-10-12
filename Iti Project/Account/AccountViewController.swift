@@ -31,8 +31,9 @@ struct AccountViewController {
             case .transference:
                 routeToAccountService().newTransference(from: logedUser)    //tranferencia
             
-            case .pix: break
-                
+            case .pix:
+                routeToPixController().startPixView(to: logedUser)
+                repeatingAccountView = false
             case .logout:
                 routeToGenericView().logout()       //finaliza menu da conta e volta para menu inicial
                 repeatingAccountView = false
