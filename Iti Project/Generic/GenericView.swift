@@ -70,4 +70,7 @@ func header() {
     func getAccount()  {
         print("Conta: ")
     }
+//    func getPixKeyType() {
+//        print("Digite a chave: ")
+//    }
 }

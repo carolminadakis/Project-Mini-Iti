@@ -20,7 +20,7 @@ func populaBanco() {
 
     _ = UserDatabase.shared.save(user: user1)
     _ = UserDatabase.shared.save(user: user2)
-    
+
     print("Maria agencia: ", user1.account.bankAgency)
     print("Maria conta: ", user1.account.accNumber)
 

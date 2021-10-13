@@ -52,7 +52,7 @@ struct PixController {
         
         while repeatMenu {
             routeToPixView().pixViewMenu()
-            print("Digite a opção referente a chave que deseja cadastrar: ")
+            routeToGenericView().getPixKey()
             if let inputOption = readLine() {
                 let inputUnwrapped: PixKey = PixKey(rawValue: inputOption) ?? .notfound
                 keyType = inputUnwrapped
@@ -67,7 +67,7 @@ struct PixController {
             }
         
         
-        print("Digite a chave: ")
+        routeToGenericView().getPixKey()
         if let inputKey = readLine() {
             key = inputKey
         }
@@ -81,16 +81,17 @@ struct PixController {
         var value: Double?
         
         let pixInformation = isPixValid()
-        
-        let pixValidationResult = pixInformation.2
+        let keyType = pixInformation.0      //pixInformation.0 me traz o tipo da chave
+        let key = pixInformation.1      //pixInformation.1 me traz a chave pix
+        let pixValidationResult = pixInformation.2 //recebo o valor booleano do método isPixValid
         
         if (pixValidationResult == true) {
             routeToGenericView().getValue()
             guard let inputValue = readLine() else { return }
             value = Double(inputValue)
             
-            if (UserDatabase.shared.existsPixKey(inputKey: pixInformation.1)){
-                let result = UserDatabase.shared.payWithPix(keyType: pixInformation.0, key: pixInformation.1, of: value, loged: logeduser)
+            if (UserDatabase.shared.existsPixKey(inputKey: key)){
+                let result = UserDatabase.shared.payWithPix(keyType: keyType, key: key, of: value, loged: logeduser)
                 if result == true {
                     print("Operação realizada com sucesso")
                 } else {

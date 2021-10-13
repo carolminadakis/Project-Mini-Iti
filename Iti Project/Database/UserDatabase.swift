@@ -118,23 +118,28 @@ class UserDatabase {
         return result
     }
     
-    func payWithPix(keyType: PixKey, key: String, of value: Double?, loged: User) -> Bool{
-        guard let value = value else { return false}
+    func payWithPix(keyType: PixKey, key: String, of valueInput: Double?, loged: User) -> Bool{
+        guard let value = valueInput else { return false}
         
         let result = existsPixKey(inputKey: key) //checa se existe o pix informado
         
-        let total = loged.account.currentBalance() //checa o saldo da conta do cliente logado
-        
         for userDB in UserDatabase.shared.users.indices {
+            let total = UserDatabase.shared.users[userDB].account.currentBalance()
             if (total >= value) {
                 UserDatabase.shared.users[userDB].account.withdraw(the: value)
+                if (result == true) {
+                    let userReceiver = UserDatabase.shared.users.first(where: {$0.account.pixKeys.contains(where: {$0.key == key})})
+                    guard let user2 = userReceiver else { return false }
+                    user2.account.deposit(of: value)
+                }
             }
         }
         
-        if result == true {
-            let userReceiver = UserDatabase.shared.users.first(where: {$0.account.pixKeys.contains(where: {$0.key == key})})
-            userReceiver?.account.deposit(of: value)
-        }
+//        if (result == true) {
+//            let userReceiver = UserDatabase.shared.users.first(where: {$0.account.pixKeys.contains(where: {$0.key == key})})
+//            guard let user2 = userReceiver else { return false }
+//            user2.account.deposit(of: value)
+//        }
         return true
     }
     
