@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RegisterAccountController {
+struct UserAccountController {
     
     func formToRegisterNewUser() -> User{
         var name: String = ""
@@ -56,13 +56,26 @@ struct RegisterAccountController {
         if (newUser.fullName.isNameValid() && newUser.idDocument.isCPFValid()){
             let isSuccess = UserDatabase.shared.save(user: newUser)
             if isSuccess == true {
-                print("Usuário cadastrado")
+                routeToGenericView().successOperation()
                 print("Agencia: ", newUser.account.bankAgency)
                 print("Conta corrente: ", newUser.account.accNumber)
             }
         } else {
-            print("Não foi possível realizar seu cadastro.")
+            routeToGenericView().failedOperation()
         }
+    }
+    
+    func deleteUserAccount(logedUser: User){
+        
+        routeToGenericView().getDocument()
+        guard let document = readLine() else { return }
+        
+        routeToGenericView().getPassword()
+        guard let password = readLine() else { return }
+        
+        guard let index = UserDatabase.shared.users.firstIndex(where: {$0.idDocument == document && $0.password == password}) else { return }
+        UserDatabase.shared.delete(user: index)
+        
     }
 }
 

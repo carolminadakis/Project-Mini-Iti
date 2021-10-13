@@ -44,9 +44,8 @@ struct AccountView {
             password = pass
         }
         
-        _ = UserDatabase.shared.findByDocument(number: document)
-        _ = UserDatabase.shared.validPassword(passwordInput: password)
-        
+        let _ = UserDatabase.shared.validUser(document: document, password: password) 
+
         return User(idDocument: document, password: password)
     }
     

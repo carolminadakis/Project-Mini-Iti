@@ -22,15 +22,14 @@ struct AccountViewController {
             switch option {
             case .balance:
                 routeToAccountService().newBalance(to: logedUser)        //saldo
-            
             case .deposit:
                 routeToAccountService().newDeposit(to: logedUser)        //depósito
-            
-            case .delete: break
-                
+            case .delete:
+                let _ = routeToUserAccountController().deleteUserAccount(logedUser: logedUser)
+                routeToGenericView().deletedAccount()      //finaliza menu da conta e volta para menu inicial
+                repeatingAccountView = false
             case .transference:
                 routeToAccountService().newTransference(from: logedUser)    //tranferencia
-            
             case .pix:
                 routeToPixController().startPixView(to: logedUser)
                 repeatingAccountView = false

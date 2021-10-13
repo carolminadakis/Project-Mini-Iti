@@ -24,79 +24,44 @@ class UserDatabase {
         UserDatabase.shared.users = user
     }
     
-    func save(user: User?) -> Bool {
-        guard let userUnwrapped = user else { return false }
-        UserDatabase.shared.users.append(userUnwrapped)
+    func save(user: User) -> Bool {
+        UserDatabase.shared.users.append(user)
+        return findByDocument(number: user.idDocument)
+    }
+    
+    func delete(user: Int){
+        users.remove(at: user)
+    }
+    
+    func findByDocument(number document: String) -> Bool {
         
-        for user in UserDatabase.shared.users.indices {
-            if UserDatabase.shared.users[user].idDocument == userUnwrapped.idDocument {
-                return true
-            }
+        if users.contains(where: {$0.idDocument == document}) { //retorna um booleano da busca pelo documento no array
+            return true
         }
         return false
     }
     
-    func delete(user: User?) -> Bool? {
-        guard let userUnwrapped = user else { return false }
+    func isValidAgencyAndAccount(agency: Int, account: Int) -> Bool {
+        if users.contains(where: {$0.account.bankAgency == agency && $0.account.accNumber == account}) {
+            return true
+        }
+        return false
+    }
+    
+    func saveDeposit(of value: Double?, userDB: User) -> Bool{
+        guard let valueUnwrapped = value else { return false}
         
-        for user in UserDatabase.shared.users.indices {
-            if UserDatabase.shared.users[user].idDocument == userUnwrapped.idDocument {
-                UserDatabase.shared.users.remove(at: user)
-                return true
-            }
-        }
-        return false
+        //o firstIndex devolve a posição do primeiro elemento encontrado no array que satisfaça a condição da busca no where
+        guard let index = users.firstIndex(where: {$0.password == userDB.password}) else { return false }
+        UserDatabase.shared.users[index].account.deposit(of: valueUnwrapped)
+        return true
     }
     
-    func findByDocument(number document: String?) -> Bool {
-        guard let documentUnwrapped = document else { return false }
-        
-        for user in UserDatabase.shared.users.indices {
-            if (UserDatabase.shared.users[user].idDocument == documentUnwrapped) {
-                return true
-            }
-        }
-        return false
-    }
-    
-    
-    func validAgency(agency: Int?) -> Bool {
-        guard let agencyUnwrapped = agency else { return false }
-        for user in UserDatabase.shared.users.indices {
-            if UserDatabase.shared.users[user].account.bankAgency == agencyUnwrapped {
-                return true
-            }
-        }
-        return false
-    }
-    
-    func validAccount(acc: Int?) -> Bool {
-        guard let accUnwrapped = acc else { return false }
-        for user in UserDatabase.shared.users.indices {
-            if UserDatabase.shared.users[user].account.accNumber == accUnwrapped {
-                return true
-            }
-        }
-        return false
-    }
-    
-    func saveDeposit(of value: Double?, userDB: User) {
-        guard let valueUnwrapped = value else { return }
-        for user in UserDatabase.shared.users.indices {
-            if (userDB.password ==  UserDatabase.shared.users[user].password) {
-                UserDatabase.shared.users[user].account.deposit(of: valueUnwrapped)
-            }
-        }
-    }
     func getBalance(loged user: User) {
-        let userPass = user.password
         
-        for user in UserDatabase.shared.users.indices {
-            if (UserDatabase.shared.users[user].password == userPass) {
-                let balance = UserDatabase.shared.users[user].account.currentBalance()
-                print(balance)
-            }
-        }
+        guard let index = users.firstIndex(where: {$0.password == user.password}) else { return }
+        let result = users[index].account.currentBalance()
+        print(result)
     }
     
     func existsPixKey(inputKey : String ) -> Bool {
@@ -120,11 +85,10 @@ class UserDatabase {
     
     func payWithPix(keyType: PixKey, key: String, of valueInput: Double?, loged: User) -> Bool{
         guard let value = valueInput else { return false}
-        
         let result = existsPixKey(inputKey: key) //checa se existe o pix informado
         
-        for userDB in UserDatabase.shared.users.indices {
-            let total = UserDatabase.shared.users[userDB].account.currentBalance()
+        for userDB in users.indices {
+            let total = users[userDB].account.currentBalance()
             if (total >= value) {
                 UserDatabase.shared.users[userDB].account.withdraw(the: value)
                 if (result == true) {
@@ -134,65 +98,35 @@ class UserDatabase {
                 }
             }
         }
-        
-//        if (result == true) {
-//            let userReceiver = UserDatabase.shared.users.first(where: {$0.account.pixKeys.contains(where: {$0.key == key})})
-//            guard let user2 = userReceiver else { return false }
-//            user2.account.deposit(of: value)
-//        }
         return true
     }
     
     func addPixKey(pixKey: Pix, loged: User) -> Bool {
-        for user in UserDatabase.shared.users.indices {
-            if (UserDatabase.shared.users[user].idDocument == loged.idDocument) {
-                UserDatabase.shared.users[user].account.pixKeys.append(pixKey)
-                return true
-            }
-            
+
+        if findByDocument(number: loged.idDocument) {
+            guard let index = users.firstIndex(where: {$0.idDocument == loged.idDocument}) else {return false}
+            users[index].account.pixKeys.append(pixKey)
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func transference(to agency: Int, to account: Int, of value: Double, userDB: User) -> Bool{
+        
+        if validUser(document: userDB.idDocument, password: userDB.password) {
+            guard let user = users.firstIndex(where: {$0.idDocument == userDB.idDocument}) else { return false}
+            users[user].account.withdraw(the: value)
+        }
+        guard let test = users.firstIndex(where: {$0.account.bankAgency == agency && $0.account.accNumber == account}) else { return false }
+        users[test].account.deposit(of: value)
+        return true
+    }
+    
+    func validUser(document: String, password: String) -> Bool {
+        if users.contains(where: {$0.idDocument == document && $0.password == password}) {
+            return true
         }
         return false
-    }
-    
-    
-    func transference(to agencyInput: Int?, to accountInput: Int?, of inputValue: Double?, userDB: User) -> Bool{
-        guard let agency = agencyInput else { return false}
-        guard let account = accountInput else { return false}
-        guard let value = inputValue else { return false}
-        
-        for userSender in UserDatabase.shared.users.indices {
-            if (userDB.password == UserDatabase.shared.users[userSender].password) {
-                UserDatabase.shared.users[userSender].account.withdraw(the: value)
-            }
-        }
-        
-        for userPaid in UserDatabase.shared.users.indices {
-            if (agency == UserDatabase.shared.users[userPaid].account.bankAgency && account == UserDatabase.shared.users[userPaid].account.accNumber) {
-                UserDatabase.shared.users[userPaid].account.deposit(of: value)
-                return true
-            }
-            
-        }
-        return false
-    }
-    
-    func withdrawTest(of valueInput: Double?, userDB: User) {
-        guard let value = valueInput else { return }
-        for user in UserDatabase.shared.users.indices {
-            if (userDB.password == UserDatabase.shared.users[user].password) {
-                UserDatabase.shared.users[user].account.withdraw(the: value)
-            }
-        }
-    }
-    
-    func validPassword(passwordInput: String?) -> String {
-        guard let passwordUnwrapped = passwordInput else { return "" }
-        for user in UserDatabase.shared.users.indices {
-            if (UserDatabase.shared.users[user].password == passwordUnwrapped) {
-                
-                return UserDatabase.shared.users[user].password
-            }
-        }
-        return ""
     }
 }

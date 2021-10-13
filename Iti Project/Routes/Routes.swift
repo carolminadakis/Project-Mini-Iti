@@ -17,9 +17,9 @@ func routeToAccountView() -> AccountView{
     return view
 }
 
-func routeToRegisterController() -> RegisterAccountController {
-    let access = RegisterAccountController()
-    return access
+func routeToUserAccountController() -> UserAccountController {
+    let userController = UserAccountController()
+    return userController
 }
 
 func routeToAccountViewController() -> AccountViewController{
@@ -31,7 +31,6 @@ func routeToPixController() -> PixController{
     let pixController = PixController()
     return pixController
 }
-
 
 func routeToGenericView() -> GenericView{
     let label = GenericView()

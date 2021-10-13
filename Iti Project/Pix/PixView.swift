@@ -29,7 +29,7 @@ struct PixView {
     func pixInitialMenu() {
         print("""
     ****************************************
-    *             Cadastro PIX             *
+    *               MENU PIX               *
     ****************************************
     *                                      *
     *       [1] - Cadastrar                *

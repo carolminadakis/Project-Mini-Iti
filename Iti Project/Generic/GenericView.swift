@@ -34,7 +34,7 @@ func header() {
     }
     
     func getPixKey() {
-        print("Digite a chave pix: ")
+        print("Escolha a chave desejada: ")
     }
     
     func getAddress() {
@@ -70,7 +70,22 @@ func header() {
     func getAccount()  {
         print("Conta: ")
     }
-//    func getPixKeyType() {
-//        print("Digite a chave: ")
-//    }
+    func getPix() {
+        print("Informe o pix: ")
+    }
+    
+    func successOperation() {
+        print("Operação realizada com sucesso.")
+    }
+    
+    func failedOperation() {
+        print("Não foi possível realizar operação.")
+    }
+    func invalidData() {
+        print("Dados inválidos.")
+    }
+    
+    func deletedAccount() {
+        print("Conta deletada.")
+    }
 }

@@ -15,26 +15,18 @@ class AccountService{
         guard let inputValue = readLine() else { return }
         guard let value = Double(inputValue) else { return  }
         
-        for user in UserDatabase.shared.users.indices {
-            if (UserDatabase.shared.users[user].password == logedUser.password) {
-                UserDatabase.shared.saveDeposit(of: value, userDB: logedUser)
-            }
+        if UserDatabase.shared.saveDeposit(of: value, userDB: logedUser) {
+            routeToGenericView().successOperation()
         }
-        print("Depósito realizado com sucesso.")
     }
     
     func newBalance(to LogedUser: User){
-        
-        for user in UserDatabase.shared.users.indices {
-            if (UserDatabase.shared.users[user].password == LogedUser.password) {
-                UserDatabase.shared.getBalance(loged: LogedUser)
-            }
-        }
+        UserDatabase.shared.getBalance(loged: LogedUser)
     }
     
     func newTransference(from logedUser: User) {
-        var value: Double?
-
+        var value = 0.0
+        
         //1- Agencia
         routeToGenericView().getAgency()
         guard let inputAgency = readLine() else { return }
@@ -45,33 +37,28 @@ class AccountService{
         guard let account = Int(inputAccount) else { return  }
         
         //2- Valida Agencia e Conta
-        let isValidAgency = UserDatabase.shared.validAgency(agency: agency)
-        let isValidAccount = UserDatabase.shared.validAccount(acc: account)
-        
-        if (isValidAgency == true && isValidAccount == true){
+        if UserDatabase.shared.isValidAgencyAndAccount(agency: agency, account: account) {
             
             //3- Recebe valor
             routeToGenericView().getValue()
             guard let inputValue = readLine() else { return }
-            value = Double(inputValue)
-
+            value = Double(inputValue) ?? 0.0
+            
         } //Tranfere valor
         let result = UserDatabase.shared.transference(to: agency, to: account, of: value, userDB: logedUser)
         if(result == true) {
-            print("Transferência realizada com sucesso.")
+            routeToGenericView().successOperation()
         } else {
-            print("Não foi possível completar a operação.")
+            routeToGenericView().failedOperation()
         }
     }
-
+    
     //Valido o user e passo ele validado como argumento para o acesso do menu do cliente 
     func getIntoAccount(validate userInfo: User) {
-        for user in UserDatabase.shared.users.indices {
-            if (UserDatabase.shared.users[user].idDocument == userInfo.idDocument && UserDatabase.shared.users[user].password == userInfo.password) {
-                
-                let user = User(idDocument: userInfo.idDocument, password: userInfo.password)
-                routeToAccountViewController().startingAccountView(to: user)
-            }
+        
+        if UserDatabase.shared.users.contains(where: {$0.idDocument == userInfo.idDocument}) {
+            let user = User(idDocument: userInfo.idDocument, password: userInfo.password)
+            routeToAccountViewController().startingAccountView(to: user)
         }
     }
 }

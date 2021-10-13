@@ -37,10 +37,10 @@ struct PixController {
             let pixKey = Pix(type: result.0, key: result.1)
             let resultDB = UserDatabase.shared.addPixKey(pixKey: pixKey, loged: logedUser)
             if resultDB == true {
-                print("Chave cadastrada com sucesso")
+                routeToGenericView().successOperation()
             }
         } else {
-            print("Informação incorreta")
+            routeToGenericView().invalidData()
         }
         
     }
@@ -62,12 +62,10 @@ struct PixController {
                 if (keyType == .returnMenu || keyType == .notfound) {
                     repeatMenu = false
                     routeToPixView().pixInitialMenu()
-                    }
                 }
             }
-        
-        
-        routeToGenericView().getPixKey()
+        }
+        routeToGenericView().getPix()
         if let inputKey = readLine() {
             key = inputKey
         }
@@ -93,9 +91,9 @@ struct PixController {
             if (UserDatabase.shared.existsPixKey(inputKey: key)){
                 let result = UserDatabase.shared.payWithPix(keyType: keyType, key: key, of: value, loged: logeduser)
                 if result == true {
-                    print("Operação realizada com sucesso")
+                    routeToGenericView().successOperation()
                 } else {
-                    print("Chave informada inexistente")
+                    routeToGenericView().invalidData()
                 }
             }
         }

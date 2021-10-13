@@ -20,8 +20,8 @@ struct MainViewController {
             
             switch option {
             case .register:
-                let user = routeToRegisterController().formToRegisterNewUser()  //preenche formulário de registro
-                routeToRegisterController().validation(of: user)                //valida informações
+                let user = routeToUserAccountController().formToRegisterNewUser()  //preenche formulário de registro
+                routeToUserAccountController().validation(of: user)                //valida informações
                 routeToAccountService().getIntoAccount(validate: user)             //valida acesso e entra no menu da conta
                 repeatMainView = false
             case .login:

@@ -18,7 +18,7 @@
 		4D695FE1271472EC00577C61 /* Pix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D695FE0271472EC00577C61 /* Pix.swift */; };
 		4D695FE32714A52E00577C61 /* PixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D695FE22714A52E00577C61 /* PixView.swift */; };
 		4D695FE52714A6C900577C61 /* PixController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D695FE42714A6C900577C61 /* PixController.swift */; };
-		4D7AC9DB2704EA9A00F468BA /* RegisterAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7AC9DA2704EA9A00F468BA /* RegisterAccountController.swift */; };
+		4D7AC9DB2704EA9A00F468BA /* UserAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7AC9DA2704EA9A00F468BA /* UserAccountController.swift */; };
 		4D9EB9B6270DAFE500C80686 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9EB9B5270DAFE500C80686 /* Validation.swift */; };
 		4D9EB9B8270E0C9F00C80686 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9EB9B7270E0C9F00C80686 /* AccountView.swift */; };
 		4D9EB9BA270E173C00C80686 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9EB9B9270E173C00C80686 /* AccountService.swift */; };
@@ -50,7 +50,7 @@
 		4D695FE0271472EC00577C61 /* Pix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pix.swift; sourceTree = "<group>"; };
 		4D695FE22714A52E00577C61 /* PixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixView.swift; sourceTree = "<group>"; };
 		4D695FE42714A6C900577C61 /* PixController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixController.swift; sourceTree = "<group>"; };
-		4D7AC9DA2704EA9A00F468BA /* RegisterAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAccountController.swift; sourceTree = "<group>"; };
+		4D7AC9DA2704EA9A00F468BA /* UserAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountController.swift; sourceTree = "<group>"; };
 		4D9EB9B5270DAFE500C80686 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		4D9EB9B7270E0C9F00C80686 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		4D9EB9B9270E173C00C80686 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
@@ -94,7 +94,6 @@
 				4D9EB9B3270DA9C800C80686 /* User */,
 				4D5408B6270CBCC2006EBC8D /* Database */,
 				4D5408B5270CAB20006EBC8D /* Account */,
-				4DFFC5FD270BA72900EDA874 /* Register */,
 				4D1D0A1227026A490062D10E /* main.swift */,
 				4DFFC5FA270B91A400EDA874 /* MainView */,
 			);
@@ -149,6 +148,7 @@
 		4D9EB9B3270DA9C800C80686 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				4D7AC9DA2704EA9A00F468BA /* UserAccountController.swift */,
 				4D60B848270392B900E0A105 /* User.swift */,
 			);
 			path = User;
@@ -169,14 +169,6 @@
 				4DFFC5FB270B92BA00EDA874 /* MainView.swift */,
 			);
 			path = MainView;
-			sourceTree = "<group>";
-		};
-		4DFFC5FD270BA72900EDA874 /* Register */ = {
-			isa = PBXGroup;
-			children = (
-				4D7AC9DA2704EA9A00F468BA /* RegisterAccountController.swift */,
-			);
-			path = Register;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,7 +232,7 @@
 				4D695FE1271472EC00577C61 /* Pix.swift in Sources */,
 				4D5408B8270CBCDF006EBC8D /* UserDatabase.swift in Sources */,
 				4D695FE52714A6C900577C61 /* PixController.swift in Sources */,
-				4D7AC9DB2704EA9A00F468BA /* RegisterAccountController.swift in Sources */,
+				4D7AC9DB2704EA9A00F468BA /* UserAccountController.swift in Sources */,
 				4D60B849270392B900E0A105 /* User.swift in Sources */,
 				4D9EB9B8270E0C9F00C80686 /* AccountView.swift in Sources */,
 				4D695FE32714A52E00577C61 /* PixView.swift in Sources */,
