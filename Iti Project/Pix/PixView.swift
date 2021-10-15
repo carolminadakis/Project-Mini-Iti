@@ -48,5 +48,5 @@ enum PixMenu: String {
     case register = "1"
     case payment = "2"
     case returnMenu = "3"
-    case notfound = "0"
+    case notfound
 }

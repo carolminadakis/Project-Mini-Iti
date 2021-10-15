@@ -22,5 +22,5 @@ enum PixKey: String {
     case phone = "2"
     case document = "3"
     case returnMenu = "5"
-    case notfound = "0"
+    case notfound
 }

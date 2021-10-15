@@ -31,7 +31,6 @@ struct MainViewController {
             case .logout:
                 routeToGenericView().logout()                                   //finaliza app
                 repeatMainView = false
-                break
             case .notFound:
                 routeToGenericView().invalidOption()
             }

@@ -30,6 +30,8 @@ struct AccountView {
     """)
     }
     
+    //MUDAR FUNÇÃO PARA USER CONTROLLER
+    
     func getUser() -> User{
         var password = ""
         var document = ""

@@ -26,7 +26,7 @@ struct AccountViewController {
                 routeToAccountService().newDeposit(to: logedUser)        //depósito
             case .delete:
                 let _ = routeToUserAccountController().deleteUserAccount(logedUser: logedUser)
-                routeToGenericView().deletedAccount()      //finaliza menu da conta e volta para menu inicial
+                routeToGenericView().deletedAccount()      
                 repeatingAccountView = false
             case .transference:
                 routeToAccountService().newTransference(from: logedUser)    //tranferencia
